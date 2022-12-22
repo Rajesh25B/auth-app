@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password
+from django.core import exceptions
 from rest_framework import serializers
 
 
@@ -30,6 +32,26 @@ class UserCreateSerializer(serializers.ModelSerializer):
             
         )
         return user
+    
+    # implement custom validation on the model level
+    def validate(self, data):
+        '''
+        Validate method checks whether the pwd meets all validator requirements.
+        If password is valid, return `None`
+        If password is invalid, raise ValidationError with all error msgs.
+        
+        '''
+        user = User(**data)
+        password = data.get('password')
+        
+        try:
+            validate_password(password, user)
+        except exceptions.ValidationError as e:
+            serilaizer_errors = serializer.as_serializer_error(e)
+            raise exceptions.ValidationError(
+                {'password': serilaizer_errors['non_field_errors']}
+            )
+        return data
 
 
 class UserSerializer(serializers.ModelSerializer):
