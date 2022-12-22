@@ -21,6 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Define and Initialise environment variables 
 env = environ.Env()
+# Take environment variables from .env file
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -29,7 +31,7 @@ env = environ.Env()
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -46,6 +48,9 @@ INSTALLED_APPS = [
     
     # third-party apps
     'rest_framework',
+    
+    # local apps
+    'users',
 ]
 
 MIDDLEWARE = [
