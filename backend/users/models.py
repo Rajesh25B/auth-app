@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
+                                            PermissionsMixin
 
 # Create your models here.
 
@@ -25,7 +26,7 @@ class UserManager(BaseUserManager):
         if not phone_number:
             raise ValueError('Users must have a valid phone-number')
         
-        email = normalize_email(email)
+        email = self.normalize_email(email)
         email = email.lower()
         
         user = self.model(
@@ -50,7 +51,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=129)
     last_name = models.CharField(max_length=129)
     email = models.EmailField(
@@ -60,7 +61,7 @@ class User(AbstractBaseUser):
     )
     phone_number = models.PositiveBigIntegerField()
     joined_on = models.DateField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=False)
+    last_modified = models.DateTimeField(auto_now=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
