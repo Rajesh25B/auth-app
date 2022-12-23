@@ -9,9 +9,9 @@ function Navbar() {
         </NavLink>
       </li>
       <li className="nav-item">
-        <NavLink className="nav-link" to="#!">
+        <Link className="nav-link" to="#!">
           Logout
-        </NavLink>
+        </Link>
       </li>
     </>
   );
