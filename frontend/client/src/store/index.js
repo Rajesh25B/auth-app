@@ -3,7 +3,7 @@ import { userReducer } from "store/slices/AuthSlice";
 
 const store = configureStore({
   reducer: {
-    users: userReducer,
+    user: userReducer,
   },
 });
 console.log(store.getState());

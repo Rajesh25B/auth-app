@@ -24,7 +24,7 @@ router.post("/api/users/register", async (req, res) => {
 
   try {
     const registerRes = await fetch(
-      `${process.env.API_URL}/api/users/register/`,
+      `${process.env.API_URL}/api/users/register`,
       {
         method: "POST",
         headers: {
