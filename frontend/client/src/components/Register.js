@@ -7,6 +7,7 @@ import { registerUser } from "store/thunks/registerUser";
 function Register() {
   const dispatch = useDispatch();
   const { registered, isLoading } = useSelector((state) => {
+    console.log(state);
     return state.user;
   });
 
@@ -105,15 +106,13 @@ function Register() {
             required
           />
         </div>
-        isLoading ? (
-        <div className="spinner-border text-light" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
+        {isLoading ? (
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
         ) : (
-        <div>
-          <button className="btn btn-primary mt-3">Register</button>
-        </div>
-        )
+          <button className="btn btn-primary mt-4">Register</button>
+        )}
       </form>
     </Layout>
   );

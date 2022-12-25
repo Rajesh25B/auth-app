@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser } from "store/thunks/registerUser";
 
-const authSlice = createSlice({
+const AuthSlice = createSlice({
   name: "auth",
   initialState: {
     isAuthenticated: false,
@@ -29,5 +29,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { resetRegistered } = authSlice.actions;
-export const userReducer = authSlice.reducer;
+export const { resetRegistered } = AuthSlice.actions;
+export const userReducer = AuthSlice.reducer;

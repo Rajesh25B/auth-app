@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { API_URL } from "config";
+// import { API_URL } from "config";
 
 // register thunk that makes async req to port 5000
 export const registerUser = createAsyncThunk(
@@ -17,7 +17,7 @@ export const registerUser = createAsyncThunk(
     });
 
     try {
-      const res = await fetch(`${API_URL}/api/users/register`, {
+      const res = await fetch("/api/users/register", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -26,8 +26,9 @@ export const registerUser = createAsyncThunk(
         body,
       });
 
-      const data = await res.json();
+      const data = await res.json(); // receives the data from Express router handler
       console.log(data);
+
       if (res.status === 201) {
         return data;
       } else {
