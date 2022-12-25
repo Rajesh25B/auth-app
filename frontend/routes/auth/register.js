@@ -23,19 +23,16 @@ router.post("/api/users/register", async (req, res) => {
   });
 
   try {
-    const registerRes = await fetch(
-      `${process.env.API_URL}/api/users/register`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body,
-      }
-    );
+    const response = await fetch(`${process.env.API_URL}/api/users/register/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body,
+    });
     // extract the data and return the status to AsyncThunks
-    const data = await registerRes.json();
+    const data = await response.json();
     return res.status(registerRes.status).json(data); // data comes from serializer.data
   } catch (err) {
     return res.status(500).json({

@@ -37,7 +37,7 @@ class RetrieveUserView(APIView):
         user = request.user
         user = UserSerializer(user)
         
-        return Response(user.data, status=status.HTTP_201_CREATED)
+        return Response(user.data, status=status.HTTP_200_OK)
 
 
 # from django.contrib.auth import get_user_model

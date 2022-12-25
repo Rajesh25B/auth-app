@@ -6,10 +6,7 @@ import { registerUser } from "store/thunks/registerUser";
 
 function Register() {
   const dispatch = useDispatch();
-  const { registered, isLoading } = useSelector((state) => {
-    console.log(state);
-    return state.user;
-  });
+  const { registered, isLoading } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     first_name: "",
