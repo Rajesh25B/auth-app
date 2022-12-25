@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { registerUser } from "store/thunks/registerUser";
 import { login } from "store/thunks/login";
 import { getUser } from "store/thunks/getUser";
+import { logout } from "store/thunks/logout";
 
 const AuthSlice = createSlice({
   name: "auth",
@@ -46,6 +47,17 @@ const AuthSlice = createSlice({
       state.user = action.payload;
     });
     builder.addCase(getUser.rejected, (state, action) => {
+      state.isLoading = false;
+    });
+    builder.addCase(logout.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(logout.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isAuthenticated = false;
+      state.user = null;
+    });
+    builder.addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
     });
   },

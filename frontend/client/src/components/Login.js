@@ -7,9 +7,7 @@ import { Navigate } from "react-router-dom";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const { isLoading, isAuthenticated, registered } = useSelector(
-    (state) => state.user
-  );
+  const { isLoading, isAuthenticated } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     email: "",

@@ -7,11 +7,13 @@ require("dotenv").config(); // helps to read the env vars into express
 const registerRoute = require("./routes/auth/register");
 const meRoute = require("./routes/auth/me");
 const loginRoute = require("./routes/auth/login");
+const logoutRoute = require("./routes/auth/logout");
 
 const app = express();
 app.use(express.json()); // middleware allows to receive the request data in json
 app.use(cookieParser());
 app.use(loginRoute); // login Route usage
+app.use(logoutRoute); // logout Route usage
 app.use(registerRoute); // registerRoute usage
 app.use(meRoute); // meRoute usage after logging in handle home page.
 
