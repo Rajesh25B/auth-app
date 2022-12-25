@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getUser } from "./getUser";
-// import { API_URL } from "config";
+import { API_URL } from "config";
 
 // login thunk that makes async req to port 5000
-export const login = createAsyncThunk(
+const login = createAsyncThunk(
   "users/login",
   async ({ email, password }, thunkAPI) => {
     const body = JSON.stringify({
@@ -12,7 +12,7 @@ export const login = createAsyncThunk(
     });
 
     try {
-      const res = await fetch("/api/users/login", {
+      const res = await fetch(`${API_URL}/api/users/login`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -36,3 +36,5 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export { login };

@@ -1,7 +1,7 @@
 const express = require("express");
 const cookie = require("cookie");
 
-// To make AJAX req in Express we need nod-fetch package
+// To make AJAX req in Express we need node-fetch package
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
@@ -22,6 +22,7 @@ router.post("/api/users/login", async (req, res) => {
       body,
     });
     const data = await response.json(); // get back the data
+
     if (response.status === 200) {
       // if successful, we get back access&refresh tokens, set them in cookies
 
@@ -32,14 +33,14 @@ router.post("/api/users/login", async (req, res) => {
           maxAge: 60 * 30,
           path: "/api/",
           sameSite: "strict",
-          secure: process.env.NODE_ENV === "production",
+          // secure: process.env.NODE_ENV === "production",
         }),
         cookie.serialize("refresh", data.refresh, {
           httpOnly: true,
           maxAge: 60 * 60 * 24,
           path: "/api/",
           sameSite: "strict",
-          secure: process.env.NODE_ENV === "production",
+          // secure: process.env.NODE_ENV === "production",
         }),
       ]);
       return res.status(200).json({ success: "Logged in successfully" });

@@ -2,7 +2,7 @@ import Layout from "components/Layout";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { registerUser } from "store/thunks/registerUser";
+import { registerUser } from "../store";
 
 function Register() {
   const dispatch = useDispatch();

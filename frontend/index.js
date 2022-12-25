@@ -4,10 +4,10 @@ const path = require("path");
 
 require("dotenv").config(); // helps to read the env vars into express
 
-const registerRoute = require("./routes/auth/register");
-const meRoute = require("./routes/auth/me");
 const loginRoute = require("./routes/auth/login");
 const logoutRoute = require("./routes/auth/logout");
+const meRoute = require("./routes/auth/me");
+const registerRoute = require("./routes/auth/register");
 
 const app = express();
 app.use(express.json()); // middleware allows to receive the request data in json

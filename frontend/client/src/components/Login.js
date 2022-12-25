@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { resetRegistered } from "../store/slices/AuthSlice";
-import { login } from "store/thunks/login";
+import { login } from "../store";
 import Layout from "components/Layout";
 import { Navigate } from "react-router-dom";
 
