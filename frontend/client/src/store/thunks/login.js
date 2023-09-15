@@ -32,7 +32,7 @@ const login = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response.data);
+      return thunkAPI.rejectWithValue(err.res.data);
     }
   }
 );
